@@ -6,7 +6,7 @@ tcpserver::tcpserver(QObject *parent) :
 {
     qDebug()<<"WELCOME TO SERVER";
     server=new QTcpServer(this);
-   connect(server,SIGNAL(newConnection()),this,SLOT(newconnection()));
+    connect(server,SIGNAL(newConnection()),this,SLOT(newconnection()));
     quint16 serverport;
     std::cout<<"ENTER THE PORT NO=";
     std::cin>>serverport;
@@ -19,10 +19,14 @@ tcpserver::tcpserver(QObject *parent) :
        std::cout<<"SERVER STARTED\n";
    }
 }
+
+
 void tcpserver::newconnection()
 {
-    QTcpSocket *socket=server->nextPendingConnection();
-    socket->waitForReadyRead(5000);
+    qDebug() << "\nBeginning new connection\n";
+    QTcpSocket *socket= server->nextPendingConnection();
+    qDebug() << "\nnext pending connection reached\n";
+    socket->waitForReadyRead(50000);
     if(socket->readLine()=="start")
     {
         qDebug()<<"start";
