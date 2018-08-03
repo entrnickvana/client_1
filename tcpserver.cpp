@@ -6,7 +6,7 @@ tcpserver::tcpserver(QObject *parent) :
 {
     qDebug()<<"WELCOME TO SERVER";
     server=new QTcpServer(this);
-    connect(server,SIGNAL(newConnection()),this,SLOT(newconnection()));
+    connect(server,SIGNAL(newconnection()),this,SLOT(newconnection()));
     quint16 serverport;
     std::cout<<"ENTER THE PORT NO=";
     std::cin>>serverport;
